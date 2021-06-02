@@ -9,6 +9,7 @@ import (
 	"os"
 	"strings"
 	"syscall"
+	"time"
 	"unsafe"
 )
 
@@ -215,5 +216,11 @@ func getFileFromRequest(w http.ResponseWriter, request *http.Request) {
 	}
 
 	w.WriteHeader(200)
+
+	time.Sleep(2 * time.Second)
+
+	err = os.RemoveAll(filePath)
+	fmt.Println("Removing file:", err)
+
 	return
 }
